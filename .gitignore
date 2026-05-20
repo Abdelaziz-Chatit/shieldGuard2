@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+Python egg info/
+*.egg-info/
+.eggs/
+*.egg
+
+# Virtual environments
+venv/
+.env
+
+# Database files
+*.db
+*.db-journal
+
+# Logs
+*.log
+logs/
+
+# Node modules
+node_modules/
+
+# Electron / frontend user data
+front-end/user_data/
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,164 @@
+{
+  "known_signatures": [
+    {
+      "id": "c2-suroot-com",
+      "pattern": "suroot.com",
+      "description": "C2 server domain from Signature-Base c2 IOC feed."
+    },
+    {
+      "id": "c2-drivres-update-info",
+      "pattern": "drivres-update.info",
+      "description": "C2 domain associated with Sofacy/ATP activity."
+    },
+    {
+      "id": "c2-softupdates-info",
+      "pattern": "softupdates.info",
+      "description": "Malicious update domain used for command-and-control."
+    },
+    {
+      "id": "c2-video-today-nytimes-com",
+      "pattern": "video.today-nytimes.com",
+      "description": "Fake domain used in APT or malware campaigns."
+    },
+    {
+      "id": "c2-rapidcomments-com",
+      "pattern": "rapidcomments.com",
+      "description": "C2 domain seen in several open-source threat intelligence feeds."
+    },
+    {
+      "id": "c2-hackqz-f3322-org",
+      "pattern": "hackqz.f3322.org",
+      "description": "Command server domain from IoC collection."
+    },
+    {
+      "id": "c2-ftp-windowsupdate-authorizeddns-us",
+      "pattern": "ftp.windowsupdate.authorizeddns.us",
+      "description": "Malicious fake Windows Update domain used by malware."
+    },
+    {
+      "id": "c2-windowsupdate-authorizeddns-us",
+      "pattern": "windowsupdate.authorizeddns.us",
+      "description": "Fake update endpoint used in APT C2 infrastructure."
+    },
+    {
+      "id": "c2-dns-snakesearch-info",
+      "pattern": "dns.snakesearch.info",
+      "description": "DNS-based indicator of suspicious or malicious traffic."
+    },
+    {
+      "id": "keyword-dumper",
+      "pattern": "Dumper",
+      "description": "Malicious keyword commonly found in credential dumping tools."
+    },
+    {
+      "id": "keyword-wce-service",
+      "pattern": "WCE SERVICE",
+      "description": "Keyword associated with Mimikatz and Windows credential dumping."
+    },
+    {
+      "id": "keyword-invoke-mimikatz",
+      "pattern": "Invoke-Mimikatz",
+      "description": "PowerShell keyword seen in Mimikatz and post-exploitation scripts."
+    },
+    {
+      "id": "keyword-psexec",
+      "pattern": "PsExec",
+      "description": "Lateral movement tool keyword used in many intrusion campaigns."
+    },
+    {
+      "id": "keyword-wscript-js",
+      "pattern": "wscript.exe /b /nologo /E:javascript",
+      "description": "Suspicious Windows Script Host execution pattern."
+    },
+    {
+      "id": "keyword-privilege-debug",
+      "pattern": "privilege::debug",
+      "description": "Mimikatz debug privilege manipulation string."
+    },
+    {
+      "id": "keyword-sekurlsa-logonpasswords",
+      "pattern": "sekurlsa::LogonPasswords",
+      "description": "Common Mimikatz module command for credential harvesting."
+    },
+    {
+      "id": "hash-c2-74d6b7b2",
+      "pattern": "74d6b7b2.app.giftbox4u.com",
+      "description": "IOC domain from Nobelium activity tracking."
+    },
+    {
+      "id": "ip-190-183-61-30",
+      "pattern": "190.183.61.30",
+      "description": "Known malicious IP used in open C2 and threat actor reporting."
+    },
+    {
+      "id": "ip-185-158-250-239",
+      "pattern": "185.158.250.239",
+      "description": "Threat intelligence IOC IP from Nobelium-related activity."
+    },
+    {
+      "id": "ip-45-135-167-27",
+      "pattern": "45.135.167.27",
+      "description": "Observed C2 endpoint address from advanced persistent threat feeds."
+    },
+    {
+      "id": "c2-applemusic-itemdb-com",
+      "pattern": "applemusic.itemdb.com",
+      "description": "Malicious domain used in APT C2 spoofing of Apple infrastructure."
+    },
+    {
+      "id": "c2-googlemail-mailsserver-com",
+      "pattern": "googlemail.com.mailsserver.com",
+      "description": "Phishing-style domain used for credential capture and C2."
+    },
+    {
+      "id": "c2-microsoftupdate-qhigh-com",
+      "pattern": "microsoftupdate.qhigh.com",
+      "description": "Fake software update domain used in malware campaigns."
+    },
+    {
+      "id": "c2-windowsupdate-mrface-com",
+      "pattern": "windowsupdate.mrface.com",
+      "description": "Malicious update server domain used by threat actors."
+    },
+    {
+      "id": "c2-supportus-mefound-com",
+      "pattern": "supportus.mefound.com",
+      "description": "Suspicious domain seen in C2/IOT threat reports."
+    },
+    {
+      "id": "c2-windowsupdate-gettrials-com",
+      "pattern": "windowsupdate.gettrials.com",
+      "description": "Fake update domain used by malicious actors."
+    },
+    {
+      "id": "c2-serveusers-com",
+      "pattern": "serveusers.com",
+      "description": "Dynamic DNS domain commonly used by malicious infrastructure."
+    },
+    {
+      "id": "c2-ftp-applemusic-zzux-com",
+      "pattern": "ftp.applemusic.zzux.com",
+      "description": "Malicious FTP domain used in APT campaigns."
+    },
+    {
+      "id": "c2-applemirror-squirly-info",
+      "pattern": "applemirror.squirly.info",
+      "description": "Impersonated update site used for malware distribution."
+    },
+    {
+      "id": "c2-evil-update-site",
+      "pattern": "download.windowsupdate.authorizeddns.org",
+      "description": "Suspicious download domain mimicking Windows Update infrastructure."
+    },
+    {
+      "id": "keyword-powersploit",
+      "pattern": "Powersploit",
+      "description": "Toolset name used by many offensive frameworks."
+    },
+    {
+      "id": "keyword-javascript-scripting-host",
+      "pattern": "Scripting Host - Suspicious",
+      "description": "Suspicious JavaScript execution context string."
+    }
+  ]
+}

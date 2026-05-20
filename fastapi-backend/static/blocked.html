@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Blocked - ShieldGuard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0d0d0f;
+            color: #e6edf3;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: #16161a;
+            border: 1px solid #2a2a35;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #e05252, #ff6b6b);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .shield-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 {
+            color: #e05252;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .domain {
+            font-family: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 18px;
+            color: #8b949e;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .message {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            color: #c9d1d9;
+        }
+
+        .request-section {
+            border-top: 1px solid #30363d;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .request-section h2 {
+            color: #e6edf3;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #e6edf3;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            background: #1e1e26;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #e6edf3;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #58a6ff;
+        }
+
+        .form-group textarea::placeholder {
+            color: #8b949e;
+        }
+
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .duration-option {
+            padding: 10px 14px;
+            background: #1e1e26;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #e6edf3;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .duration-option:hover {
+            background: #2a2a35;
+            border-color: #58a6ff;
+        }
+
+        .duration-option.selected {
+            background: #58a6ff;
+            border-color: #58a6ff;
+            color: #0d0d0f;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: #58a6ff;
+            border: none;
+            border-radius: 6px;
+            color: #0d0d0f;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: #79c0ff;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            background: #30363d;
+            color: #8b949e;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status-message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .status-success {
+            background: #1a7f37;
+            color: #e6edf3;
+            border: 1px solid #238636;
+        }
+
+        .status-error {
+            background: #da3633;
+            color: #e6edf3;
+            border: 1px solid #f85149;
+        }
+
+        .rejection-notice {
+            background: #bb8009;
+            color: #e6edf3;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #d29922;
+            font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .duration-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="shield-icon">🛡️</div>
+        <h1>Access Blocked</h1>
+        <div class="domain" id="domain">{{DOMAIN}}</div>
+        <div class="message">
+            This site is blocked by ShieldGuard for security reasons.
+        </div>
+
+        <div class="request-section">
+            <h2>Request Access</h2>
+
+            <div id="rejection-notice" class="rejection-notice" style="display: none;">
+                <strong>Previous request rejected:</strong> <span id="rejection-reason"></span>
+            </div>
+
+            <form id="request-form">
+                <div class="form-group">
+                    <label for="reason">Why do you need access? (Optional)</label>
+                    <textarea id="reason" name="reason" placeholder="Please explain why you need access to this site..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Duration</label>
+                    <div class="duration-grid">
+                        <div class="duration-option" data-minutes="30">30 minutes</div>
+                        <div class="duration-option" data-minutes="60">1 hour</div>
+                        <div class="duration-option" data-minutes="240">4 hours</div>
+                        <div class="duration-option" data-minutes="480">8 hours</div>
+                        <div class="duration-option" data-minutes="1440">24 hours</div>
+                        <div class="duration-option" data-minutes="0">Permanent</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    Submit Request
+                </button>
+            </form>
+
+            <div id="status-message" class="status-message"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get domain from URL or template
+        const urlParams = new URLSearchParams(window.location.search);
+        let domain = urlParams.get('domain') || '{{DOMAIN}}' || window.location.hostname || 'unknown domain';
+
+        // Update domain display
+        document.getElementById('domain').textContent = domain;
+
+        // Duration selection
+        let selectedDuration = 60; // Default to 1 hour
+        const durationOptions = document.querySelectorAll('.duration-option');
+
+        durationOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                durationOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedDuration = parseInt(this.dataset.minutes);
+            });
+        });
+
+        // Set default selection
+        document.querySelector('[data-minutes="60"]').classList.add('selected');
+
+        const backendBase = 'http://127.0.0.1:8000';
+        // Check for previous rejection
+        fetch(`${backendBase}/public/requests?domain=${encodeURIComponent(domain)}`)
+            .then(response => response.json())
+            .then(requests => {
+                const domainRequests = requests.filter(req =>
+                    req.domain.toLowerCase() === domain.toLowerCase() &&
+                    req.status === 'rejected'
+                );
+
+                if (domainRequests.length > 0) {
+                    const latestRejection = domainRequests[0];
+                    document.getElementById('rejection-reason').textContent =
+                        latestRejection.rejection_reason || 'No reason provided';
+                    document.getElementById('rejection-notice').style.display = 'block';
+                }
+            })
+            .catch(err => console.log('Could not check previous requests:', err));
+
+        // Form submission
+        document.getElementById('request-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            const statusMessage = document.getElementById('status-message');
+            const reason = document.getElementById('reason').value.trim();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            statusMessage.style.display = 'none';
+
+            fetch(`${backendBase}/public/requests`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    domain: domain,
+                    reason: reason || null,
+                    requested_duration_minutes: selectedDuration || null
+                })
+            })
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.detail || 'Unknown error');
+                }
+                return data;
+            })
+            .then(data => {
+                if (data.status === 'created') {
+                    statusMessage.className = 'status-message status-success';
+                    statusMessage.textContent = 'Request submitted successfully! Waiting for admin approval.';
+                    statusMessage.style.display = 'block';
+                    document.getElementById('request-form').style.display = 'none';
+                } else {
+                    throw new Error(data.detail || 'Unknown error');
+                }
+            })
+            .catch(error => {
+                statusMessage.className = 'status-message status-error';
+                statusMessage.textContent = 'Error submitting request: ' + error.message;
+                statusMessage.style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Request';
+            });
+        });
+    </script>
+</body>
+</html>

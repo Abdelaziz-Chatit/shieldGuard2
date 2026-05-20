@@ -1,0 +1,67 @@
+{
+  "model": "ShieldGuard Isolation Forest",
+  "dataset": "CICIDS2017",
+  "date": "2026-05-02T17:52:25.122131",
+  "architecture": {
+    "type": "Isolation Forest",
+    "n_estimators": 200,
+    "contamination": 0.2,
+    "max_samples": "auto",
+    "n_features_total": 78,
+    "n_features_used": 30,
+    "top_features": [
+      "Max_Packet_Length",
+      "Init_Win_bytes_forward",
+      "Destination_Port",
+      "Average_Packet_Size",
+      "Min_Packet_Length",
+      "Packet_Length_Variance",
+      "Packet_Length_Std",
+      "Init_Win_bytes_backward",
+      "Bwd_Packet_Length_Std",
+      "Bwd_Packet_Length_Max",
+      "Fwd_Packet_Length_Mean",
+      "Subflow_Fwd_Bytes",
+      "Avg_Fwd_Segment_Size",
+      "Fwd_Packet_Length_Max",
+      "Avg_Bwd_Segment_Size",
+      "Fwd_Packet_Length_Min",
+      "Fwd_Header_Length.1",
+      "Bwd_Header_Length",
+      "Bwd_Packet_Length_Min",
+      "Fwd_Header_Length",
+      "Bwd_Packet_Length_Mean",
+      "Packet_Length_Mean",
+      "Subflow_Fwd_Packets",
+      "Total_Length_of_Fwd_Packets",
+      "Fwd_IAT_Max",
+      "Bwd_Packets_s",
+      "PSH_Flag_Count",
+      "Total_Length_of_Bwd_Packets",
+      "Subflow_Bwd_Bytes",
+      "Fwd_IAT_Total"
+    ]
+  },
+  "training": {
+    "train_samples": 2273097,
+    "eval_samples": 200000,
+    "total_samples": 2830743,
+    "trained_on": "BENIGN only (unsupervised)",
+    "optimal_threshold": 0.61607
+  },
+  "metrics": {
+    "accuracy": 0.7333,
+    "f1_binary": 0.4067,
+    "f1_macro": 0.6174,
+    "precision": 0.3619,
+    "recall": 0.4642,
+    "auc_roc": 0.7341,
+    "best_f1_tuned": 0.5596,
+    "confusion_matrix": {
+      "TP": 18282,
+      "FP": 32231,
+      "TN": 128381,
+      "FN": 21106
+    }
+  }
+}

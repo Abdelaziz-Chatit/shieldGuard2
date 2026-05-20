@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "ShieldGuard Phishing Detector",
+  "version": "1.0",
+  "description": "Detects phishing websites using AI model",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.virustotal.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Check Phishing"
+  }
+}

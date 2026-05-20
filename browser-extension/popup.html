@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>ShieldGuard</title>
+  <style>
+    body {
+      width: 320px;
+      padding: 16px;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f4f6fb;
+      color: #1f2937;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      padding: 18px;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      color: #111827;
+    }
+
+    .site-name {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: #4b5563;
+      word-break: break-all;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #result {
+      margin-top: 18px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .status.safe {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .status.phishing {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .vt-result .vt-status.vt-pending {
+      color: #4b5563;
+    }
+
+    .score-bar {
+      height: 10px;
+      width: 100%;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .score-progress {
+      height: 100%;
+      width: 0;
+      background: #2563eb;
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .detail {
+      margin-top: 10px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+
+    .vt-result {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .vt-result h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #111827;
+    }
+
+    .vt-result .vt-status {
+      font-weight: 600;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h3>ShieldGuard Phishing Check</h3>
+    <p class="site-name" id="siteName">Site: <span>unknown</span></p>
+    <button id="check">Check Current Site</button>
+    <div class="form-group">
+      <label class="form-label" for="vtApiKey">VirusTotal API Key</label>
+      <input class="form-input" type="password" id="vtApiKey" placeholder="Optional: paste your VirusTotal API key" />
+    </div>
+    <div id="result"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
